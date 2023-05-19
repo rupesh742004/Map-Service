@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:camera/camera.dart';
 
 
 
@@ -29,7 +30,7 @@ class _UplodeImageState extends State<UplodeImage> {
 
   Future getImagegallery() async {
     final pickedFile =
-        await picker.pickImage(source: ImageSource.gallery, imageQuality: 80);
+        await picker.pickImage(source: ImageSource.camera, imageQuality: 80);
 
     setState(() {
       if (pickedFile != null) {

@@ -1,6 +1,7 @@
 import 'package:copyfile/ui/auth/login_screeen.dart';
 import 'package:copyfile/ui/firestore/add_data_firebase.dart';
 import 'package:copyfile/ui/firestore/firestore_list_screen.dart';
+import 'package:copyfile/ui/firestore/shake_phone.dart';
 import 'package:copyfile/ui/uplode_image.dart';
 import 'package:copyfile/user_corent_location.dart';
 import 'package:copyfile/utils/utils.dart';
@@ -69,6 +70,12 @@ class _HomeButtonsState extends State<HomeButtons> {
                 padding: const EdgeInsets.all(8.0),
                 child: RoundButton(title: "Add comment ", ontap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> FireSoretScreen()));
+                }),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RoundButton(title: "Shake phone ", ontap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ShakePhone()));
                 }),
               ),
             ],

@@ -62,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
         return true;
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Center(child: Text('Log in')),
@@ -81,6 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
+
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         child: TextFormField(
@@ -169,9 +171,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         MaterialPageRoute(builder:(context)=>LoginWithPhoneNumber() ));
                   },
                   child: Padding(
+
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Container(
                       height: 50,
+
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
