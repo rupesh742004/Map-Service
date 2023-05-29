@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
         return true;
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+         resizeToAvoidBottomInset: false,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Center(child: Text('Log in')),

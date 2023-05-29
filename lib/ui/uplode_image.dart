@@ -30,7 +30,7 @@ class _UplodeImageState extends State<UplodeImage> {
 
   Future getImagegallery() async {
     final pickedFile =
-        await picker.pickImage(source: ImageSource.camera, imageQuality: 80);
+        await picker.pickImage(source: ImageSource.gallery, imageQuality: 80);
 
     setState(() {
       if (pickedFile != null) {
@@ -78,19 +78,23 @@ class _UplodeImageState extends State<UplodeImage> {
               child: RoundButton(
                   title: 'uplode',
                   ontap: () async {
-                    firebase_storage.Reference ref = firebase_storage
-                        .FirebaseStorage.instance
-                        .ref('\images' + '222');
-                    firebase_storage.UploadTask uplodetask =
-                        ref.putFile(_image!.absolute);
+                    String id = DateTime.now().millisecondsSinceEpoch.toString();
+                    firebase_storage.Reference ref = firebase_storage .FirebaseStorage.instance.ref('Photos/images'+id);
+                    firebase_storage.UploadTask uplodetask =ref.putFile(_image!.absolute);
 
-                    await Future.value(uplodetask);
-                    var newurl = ref.getDownloadURL();
-                    databaseref.child('1').set({
-                      'id': "1222",
-                      'title':newurl.toString(),
+                     Future.value(uplodetask).then((value) {
+                      var newurl = ref.getDownloadURL();
+                      databaseref.child(id).set({
+                        'id': id,
+                        'title':newurl.toString(),
+                      });
+                      utils().toastmassage("Uploded");
+
+                    }).onError((error, stackTrace) {
+                      utils().toastmassage(error.toString());
                     });
-                    utils().toastmassage("Uploded");
+
+
 
 
                   }),

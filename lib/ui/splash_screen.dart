@@ -19,17 +19,11 @@ class _splashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
 
-      body:  Center(
-
-        child: Text(
-          'Welcome \n\n Women Safety ',
-          style: TextStyle(fontSize: 40),
-
-
-        ),
-      ),
+      body:  Container(
+        color: Colors.blue,
+      )
     );
   }
 }

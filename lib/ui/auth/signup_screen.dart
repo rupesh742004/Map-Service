@@ -47,6 +47,15 @@ class _SignupScreenState extends State<SignupScreen> {
 
     });
   }
+  Future<void> sandEmailVerification()async{
+    try{
+      await   _auth.currentUser?.sendEmailVerification();
+    }catch(e){
+      print(e);
+      utils().toastmassage(e.toString());
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {

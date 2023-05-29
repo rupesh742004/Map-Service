@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:copyfile/utils/utils.dart';
 import 'package:copyfile/widgets/round_button.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:copyfile/user_corent_location.dart';
 
@@ -14,7 +15,7 @@ class AddDataFirebase extends StatefulWidget {
 class _AddDataFirebaseState extends State<AddDataFirebase> {
 
   final commentcomtrollar = TextEditingController();
-  final firestore = FirebaseFirestore.instance.collection('comments');
+  final firestore = FirebaseDatabase.instance.ref('Comments');
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +59,7 @@ class _AddDataFirebaseState extends State<AddDataFirebase> {
 
               RoundButton(title: 'Add', ontap: (){
                 String id = DateTime.now().millisecondsSinceEpoch.toString();
-                firestore.doc(id).set({
+                firestore.child(id).set({
                   'titel': commentcomtrollar.text.toString(),
                   'id'  : id ,
 

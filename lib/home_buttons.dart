@@ -1,6 +1,8 @@
 import 'package:copyfile/ui/auth/login_screeen.dart';
 import 'package:copyfile/ui/firestore/add_data_firebase.dart';
 import 'package:copyfile/ui/firestore/firestore_list_screen.dart';
+import 'package:copyfile/ui/firestore/sand_sms.dart';
+import 'package:copyfile/ui/firestore/sandsmswhithlocation.dart';
 import 'package:copyfile/ui/firestore/shake_phone.dart';
 import 'package:copyfile/ui/uplode_image.dart';
 import 'package:copyfile/user_corent_location.dart';
@@ -18,7 +20,6 @@ class HomeButtons extends StatefulWidget {
 }
 
 class _HomeButtonsState extends State<HomeButtons> {
-
   final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -27,56 +28,99 @@ class _HomeButtonsState extends State<HomeButtons> {
         automaticallyImplyLeading: false,
         title: Icon(Icons.home_outlined),
         actions: [
-          Align(child: IconButton(onPressed: () {
-            auth.signOut().then((value) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-            }).onError((error, stackTrace){
-              utils().toastmassage(error.toString());
-            });
-
-          }, icon: Icon(Icons.logout))),
+          Align(
+              child: IconButton(
+                  onPressed: () {
+                    auth.signOut().then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
+                    }).onError((error, stackTrace) {
+                      utils().toastmassage(error.toString());
+                    });
+                  },
+                  icon: Icon(Icons.logout))),
         ],
       ),
-
       body: Container(
-
-
         decoration: const BoxDecoration(
-          // image: DecorationImage(
-          //     image: AssetImage("assets/icon/protect.png"),
-          //     fit: BoxFit.cover),
-          color: Colors.blueGrey
-        ),
+            // image: DecorationImage(
+            //     image: AssetImage("assets/icon/protect.png"),
+            //     fit: BoxFit.cover),
+            color: Colors.blueGrey),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: RoundButton(title: "My Location", ontap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> GetUserCurrentLocatinScreen()));
-                }),
+                child: RoundButton(
+                    title: "My Location",
+                    ontap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  GetUserCurrentLocatinScreen()));
+                    }),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: RoundButton(title: "Uplode Image ", ontap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> UplodeImage()));
-                }),
+                child: RoundButton(
+                    title: "Uplode Image ",
+                    ontap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UplodeImage()));
+                    }),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: RoundButton(title: "Add comment ", ontap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> FireSoretScreen()));
-                }),
+                child: RoundButton(
+                    title: "Add comment ",
+                    ontap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FireSoretScreen()));
+                    }),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: RoundButton(title: "Shake phone ", ontap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ShakePhone()));
-                }),
+                child: RoundButton(
+                    title: "Shake phone ",
+                    ontap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ShakePhone()));
+                    }),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RoundButton(
+                    title: "Sand  ",
+                    ontap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SandSMSCallEmail()));
+                    }),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RoundButton(
+                    title: "Sand location   ",
+                    ontap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SandSMSWithLiveLocation()));
+                    }),
               ),
             ],
           ),

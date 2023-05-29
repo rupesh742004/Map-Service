@@ -1,6 +1,8 @@
 import 'package:copyfile/ui/auth/signup_screen.dart';
 import 'package:copyfile/ui/firestore/add_data_firebase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
 class FireSoretScreen extends StatefulWidget {
@@ -13,13 +15,10 @@ class FireSoretScreen extends StatefulWidget {
 class _FireSoretScreenState extends State<FireSoretScreen> {
 
   final auth = FirebaseAuth.instance;
-  final editController = TextEditingController();
+  final ref =FirebaseDatabase.instance.ref('Comments');
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +30,22 @@ class _FireSoretScreenState extends State<FireSoretScreen> {
 
       body: Column(
         children: [
-          SizedBox(height: 10,),
           Expanded(
-              child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index){
-                return ListTile(title:Text('rohit ') ,);
-              })
 
+            child: FirebaseAnimatedList(
+
+                query: ref,
+                defaultChild: Text('loading'),
+                itemBuilder: (context, snapshot, animation, index){
+                  return ListTile(
+
+                    title: Text(snapshot.child('titel').value.toString()),
+
+                  );
+                }
+            ),
           )
+
         ],
       ),
 
